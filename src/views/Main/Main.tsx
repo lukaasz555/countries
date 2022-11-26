@@ -5,20 +5,16 @@ import CountryCard from '../../components/CountryCard/CountryCard';
 import axios from 'axios';
 import { CountryProps } from '../../components/CountryCard/CountryCard';
 
-const Main: FC = () => {
-	const [allCountries, setAllCountries] = useState<CountryProps[] | []>([]);
+interface MainProps {
+	countries: CountryProps[] | [];
+}
+
+const Main: FC<MainProps> = ({ countries }) => {
 	const [filtered, setFiltered] = useState<CountryProps[] | []>([]);
 
 	useEffect(() => {
-		const data = axios
-			.get('https://restcountries.com/v3.1/all')
-			.then((res) => {
-				console.log(res.data);
-				setAllCountries(res.data);
-				setFiltered(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, []);
+		setFiltered(countries);
+	}, [countries]);
 
 	return (
 		<div className='App bg-lightBG min-h-screen w-full flex flex-col items-start'>

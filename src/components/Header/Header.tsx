@@ -1,12 +1,18 @@
 import React, { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon } from '@fortawesome/free-regular-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Header: FC = () => {
 	return (
 		<header className='bg-white w-full shadow-bottom'>
 			<div className='flex justify-between items-center w-1/1 min-w-mobile max-w-desktop my-2 mx-auto py-2 px-5 2xl:px-0'>
-				<h1 className='font-extrabold text-xl py-1.5'>Where in the world?</h1>
+				<h1>
+					<Link to='/' className='font-extrabold text-xl py-1.5'>
+						Where in the world?
+					</Link>
+				</h1>
+
 				<button
 					className='flex justify-around items-center'
 					onClick={() => console.log('mode switched')}>
