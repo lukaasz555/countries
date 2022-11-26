@@ -9,9 +9,18 @@ module.exports = {
 			lightInput: 'hsl(0, 0%, 52%)',
 			lightBG: 'hsl(0, 0%, 98%)',
 			white: 'hsl(0, 0%, 100%)',
+			red: 'lime',
 		},
 		fontFamily: {
 			sans: ['Nunito Sans', 'sans-serif'],
+		},
+		fontSize: {
+			xs: '12px',
+			s: '14px',
+			m: '16px',
+			l: '18px',
+			xl: '21px',
+			'2xl': '24px',
 		},
 		screens: {
 			sm: '576px',
@@ -30,6 +39,11 @@ module.exports = {
 			full: '100%',
 			input: '350px',
 			filter: '175px',
+			card: '280px',
+		},
+		height: {
+			card: '350px',
+			half: '180px',
 		},
 		borderRadius: {
 			regular: '6px',
@@ -38,6 +52,7 @@ module.exports = {
 			boxShadow: {
 				bottom: '0 4px 20px -14px rgba(0, 0, 0, 0.3)',
 				tool: '8px 2px 20px rgba(0, 0, 0, 0.1)',
+				card: '4px 8px 20px rgba(0, 0, 0, 0.1)',
 			},
 		},
 	},

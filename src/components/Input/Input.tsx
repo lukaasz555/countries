@@ -9,7 +9,7 @@ const Input: FC = () => {
 			<input
 				type='text'
 				placeholder='Search for a country...'
-				className='font-sans mr-5 focus:outline-none'
+				className='font-sans mr-5 focus:outline-none text-m'
 			/>
 		</div>
 	);

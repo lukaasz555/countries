@@ -7,11 +7,12 @@ const Filter: FC = () => {
 	const handleFilter = (e: React.MouseEvent<HTMLButtonElement>) => {
 		const target = e.target as Element;
 		console.log(target.innerHTML);
+		setOpen(!open);
 	};
 	return (
-		<div className='relative bg-darkBG w-filter flex justify-center items-center px-1.5 bg-white shadow-tool rounded-regular py-2 mt-3 md:mt-0'>
+		<div className='relative w-filter flex justify-center items-center px-1.5 bg-white shadow-tool rounded-regular py-2 mt-3 md:mt-0'>
 			<button
-				className='font-sans text-sm flex justify-between items-center w-full px-2'
+				className='font-sans text-s flex justify-between items-center w-full px-2'
 				onClick={() => {
 					setOpen(!open);
 					console.log('menu on/off');
@@ -28,7 +29,7 @@ const Filter: FC = () => {
 				} origin-top transition-all`}>
 				<li>
 					<button
-						className='w-full text-left px-5 py-0.5 text-sm'
+						className='w-full text-left px-5 py-0.5 text-s'
 						id='#africa'
 						onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
 							handleFilter(e)
@@ -37,20 +38,20 @@ const Filter: FC = () => {
 					</button>
 				</li>
 				<li>
-					<button className='w-full text-left px-5 py-0.5 text-sm'>
+					<button className='w-full text-left px-5 py-0.5 text-s'>
 						America
 					</button>
 				</li>
 				<li>
-					<button className='w-full text-left px-5 py-0.5 text-sm'>Asia</button>
+					<button className='w-full text-left px-5 py-0.5 text-s'>Asia</button>
 				</li>
 				<li>
-					<button className='w-full text-left px-5 py-0.5 text-sm'>
+					<button className='w-full text-left px-5 py-0.5 text-s'>
 						Europe
 					</button>
 				</li>
 				<li>
-					<button className='w-full text-left px-5 py-0.5 text-sm'>
+					<button className='w-full text-left px-5 py-0.5 text-s'>
 						Oceania
 					</button>
 				</li>
