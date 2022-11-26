@@ -26,9 +26,18 @@ module.exports = {
 		minWidth: {
 			mobile: '350px',
 		},
+		width: {
+			full: '100%',
+			input: '350px',
+			filter: '175px',
+		},
+		borderRadius: {
+			regular: '6px',
+		},
 		extend: {
 			boxShadow: {
 				bottom: '0 4px 20px -14px rgba(0, 0, 0, 0.3)',
+				tool: '8px 2px 20px rgba(0, 0, 0, 0.1)',
 			},
 		},
 	},
