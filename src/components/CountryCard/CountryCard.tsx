@@ -1,5 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { FC, useState } from 'react';
 import DetailsTemplate from '../Details/DetailsTemplate';
 import DetailsContent from '../Details/DetailsContent';
 import { Link } from 'react-router-dom';
@@ -24,20 +23,10 @@ const CountryCard: FC<CountryProps> = ({
 	capital,
 }) => {
 	const [country, setCountry] = useState<CountryProps | {}>({});
-	/* 	const [country, setCountry] = useState<any[]>([]);
-	useEffect(() => {
-		const data = axios
-			.get('https://restcountries.com/v3.1/name/brasil')
-			.then((res) => {
-				setCountry(res.data);
-				console.log(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, []); */
 
 	return (
 		<div>
-			{country ? (
+			{capital instanceof Array ? (
 				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-between m-5 w-card'>
 					<section>
 						<img
@@ -64,7 +53,7 @@ const CountryCard: FC<CountryProps> = ({
 
 						<div className='flex'>
 							<DetailsTemplate body='Capital' />
-							<DetailsContent body={capital} />
+							<DetailsContent body={capital.join(', ')} />
 						</div>
 					</section>
 				</div>
