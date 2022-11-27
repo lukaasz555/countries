@@ -24,12 +24,12 @@ const Input: FC<InputProps> = ({ allCountries, filtered, setFiltered }) => {
 	};
 
 	return (
-		<div className='bg-white p-2.5 shadow-tool w-input rounded-regular'>
+		<div className='bg-white py-2.5 pl-3 shadow-tool w-input rounded-regular'>
 			<FontAwesomeIcon icon={faMagnifyingGlass} className='mx-5' />
 			<input
 				type='text'
 				placeholder='Search for a country...'
-				className='font-sans mr-5 focus:outline-none text-m'
+				className='font-sans focus:outline-none text-m'
 				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 					handleInputChange(e)
 				}
