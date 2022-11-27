@@ -9,15 +9,6 @@ import { CountriesCtx } from '../../context/CountriesContext';
 const Main: FC = () => {
 	const { allCountries, filtered, setAllCountries, setFiltered } =
 		useContext(CountriesCtx);
-	useEffect(() => {
-		axios
-			.get('https://restcountries.com/v3.1/all')
-			.then((res) => {
-				setAllCountries(res.data);
-				setFiltered(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, []);
 
 	return (
 		<div className='bg-lightBG min-h-screen w-full flex flex-col items-start'>
@@ -39,6 +30,7 @@ const Main: FC = () => {
 								region={c.region}
 								flags={c.flags}
 								capital={c.capital}
+								cca3={c.cca3}
 							/>
 					  ))
 					: 'Loading ...'}

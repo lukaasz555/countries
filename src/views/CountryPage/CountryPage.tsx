@@ -4,6 +4,7 @@ import DetailsTemplate from '../../components/Details/DetailsTemplate';
 import DetailsContent from '../../components/Details/DetailsContent';
 import { CountriesCtx } from '../../context/CountriesContext';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const CountryPage: FC = () => {
 	const [country, setCountry] = useState<any>();
@@ -11,16 +12,6 @@ const CountryPage: FC = () => {
 	const { allCountries, setAllCountries, setFiltered } =
 		useContext(CountriesCtx);
 	console.log('CPAGE: ', allCountries);
-
-	useEffect(() => {
-		axios
-			.get('https://restcountries.com/v3.1/all')
-			.then((res) => {
-				setAllCountries(res.data);
-				setFiltered(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, []);
 
 	useEffect(() => {
 		axios
@@ -59,14 +50,24 @@ const CountryPage: FC = () => {
 		}
 	};
 
+	const checkCountries = (data: string) => {
+		const newArr = allCountries.filter(
+			(c) => c.cca3.toUpperCase() === data.toUpperCase()
+		);
+		return newArr;
+	};
+
 	const getData = () => {
 		if (typeof country !== 'undefined') {
 			const borders = country[0].borders;
-			console.log(borders);
+			const borderCountries = borders.map((item: string) =>
+				checkCountries(item)
+			);
+			return borderCountries;
 		}
 	};
 
-	getData();
+	console.log(getData());
 
 	return (
 		<div>

@@ -1,5 +1,6 @@
-import React, { createContext, useState, ReactNode } from 'react';
+import React, { createContext, useState, ReactNode, useEffect } from 'react';
 import { CountryProps } from '../components/CountryCard/CountryCard';
+import axios from 'axios';
 
 interface ICountriesCtxProvider {
 	children: ReactNode;
@@ -24,6 +25,16 @@ export const CountriesContextProvider = ({
 }: ICountriesCtxProvider) => {
 	const [allCountries, setAllCountries] = useState<CountryProps[] | []>([]);
 	const [filtered, setFiltered] = useState<CountryProps[] | []>([]);
+
+	useEffect(() => {
+		axios
+			.get('https://restcountries.com/v3.1/all')
+			.then((res) => {
+				setAllCountries(res.data);
+				setFiltered(res.data);
+			})
+			.catch((err) => console.log(err));
+	}, []);
 
 	return (
 		<CountriesCtx.Provider
