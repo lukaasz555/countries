@@ -1,16 +1,14 @@
-import React, { FC, useEffect, useState, useContext } from 'react';
+import React, { FC, useEffect, useContext } from 'react';
 import Filter from '../../components/Filter/Filter';
 import Input from '../../components/Input/Input';
 import CountryCard from '../../components/CountryCard/CountryCard';
 import { CountryProps } from '../../components/CountryCard/CountryCard';
 import axios from 'axios';
-import { TestCtx } from '../../context/CountriesContext';
+import { CountriesCtx } from '../../context/CountriesContext';
 
 const Main: FC = () => {
-	/* 	const [allCountries, setAllCountries] = useState<CountryProps[] | []>([]); */
-	const [filtered, setFiltered] = useState<CountryProps[] | []>([]);
-	const { allCountries, setAllCountries } = useContext(TestCtx);
-
+	const { allCountries, filtered, setAllCountries, setFiltered } =
+		useContext(CountriesCtx);
 	useEffect(() => {
 		axios
 			.get('https://restcountries.com/v3.1/all')

@@ -8,20 +8,27 @@ interface ICountriesCtxProvider {
 interface ICountriesCtx {
 	allCountries: CountryProps[] | [];
 	setAllCountries: React.Dispatch<React.SetStateAction<CountryProps[]>>;
+	filtered: CountryProps[] | [];
+	setFiltered: React.Dispatch<React.SetStateAction<CountryProps[]>>;
 }
 
-export const TestCtx = createContext<ICountriesCtx>({
+export const CountriesCtx = createContext<ICountriesCtx>({
 	allCountries: [],
 	setAllCountries: () => {},
+	filtered: [],
+	setFiltered: () => {},
 });
 
 export const CountriesContextProvider = ({
 	children,
 }: ICountriesCtxProvider) => {
-	const [allCountries, setAllCountries] = useState<[] | CountryProps[]>([]);
+	const [allCountries, setAllCountries] = useState<CountryProps[] | []>([]);
+	const [filtered, setFiltered] = useState<CountryProps[] | []>([]);
+
 	return (
-		<TestCtx.Provider value={{ allCountries, setAllCountries }}>
+		<CountriesCtx.Provider
+			value={{ allCountries, setAllCountries, filtered, setFiltered }}>
 			{children}
-		</TestCtx.Provider>
+		</CountriesCtx.Provider>
 	);
 };

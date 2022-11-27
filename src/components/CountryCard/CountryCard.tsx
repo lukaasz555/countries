@@ -11,6 +11,8 @@ export interface CountryProps {
 		png: string;
 	};
 	capital: string[];
+	/* 	borders: string[];
+	cca3: string; */
 }
 
 const CountryCard: FC<CountryProps> = ({

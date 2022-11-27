@@ -5,11 +5,12 @@ import { CountryProps } from '../CountryCard/CountryCard';
 
 interface FilterProps {
 	allCountries: CountryProps[] | [];
-	setFiltered: React.Dispatch<React.SetStateAction<any>>;
+	setFiltered: React.Dispatch<React.SetStateAction<CountryProps[]>>;
 }
 
 const Filter: FC<FilterProps> = ({ allCountries, setFiltered }) => {
 	const [open, setOpen] = useState<boolean>(false);
+	console.log('filter: ', allCountries);
 
 	const filterByRegion = (e: any) => {
 		if (typeof e === 'string') {

@@ -1,12 +1,26 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import DetailsTemplate from '../../components/Details/DetailsTemplate';
 import DetailsContent from '../../components/Details/DetailsContent';
+import { CountriesCtx } from '../../context/CountriesContext';
 import axios from 'axios';
 
 const CountryPage: FC = () => {
 	const [country, setCountry] = useState<any>();
 	const location = useLocation();
+	const { allCountries, setAllCountries, setFiltered } =
+		useContext(CountriesCtx);
+	console.log('CPAGE: ', allCountries);
+
+	useEffect(() => {
+		axios
+			.get('https://restcountries.com/v3.1/all')
+			.then((res) => {
+				setAllCountries(res.data);
+				setFiltered(res.data);
+			})
+			.catch((err) => console.log(err));
+	}, []);
 
 	useEffect(() => {
 		axios
@@ -45,13 +59,19 @@ const CountryPage: FC = () => {
 		}
 	};
 
-	const getBorderCountries = () => console.log('asdf');
-	console.log(getBorderCountries());
+	const getData = () => {
+		if (typeof country !== 'undefined') {
+			const borders = country[0].borders;
+			console.log(borders);
+		}
+	};
+
+	getData();
 
 	return (
 		<div>
 			{typeof country == 'undefined' ? null : (
-				<main className='flex flex-col mt-5 items-center min-w-card border-2 border-red border-solid px-8'>
+				<main className='flex flex-col mt-5 items-start min-w-card px-8'>
 					<div className='my-5 w-full flex justify-center'>
 						<img
 							src={country[0].flags.png}
