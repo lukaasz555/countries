@@ -1,22 +1,38 @@
 import React, { FC, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { CountryProps } from '../CountryCard/CountryCard';
 
-const Filter: FC = () => {
+interface FilterProps {
+	allCountries: CountryProps[] | [];
+	setFiltered: React.Dispatch<React.SetStateAction<any>>;
+}
+
+const Filter: FC<FilterProps> = ({ allCountries, setFiltered }) => {
 	const [open, setOpen] = useState<boolean>(false);
-	const handleFilter = (e: React.MouseEvent<HTMLButtonElement>) => {
-		const target = e.target as Element;
-		console.log(target.innerHTML);
+
+	const filterByRegion = (e: any) => {
+		if (typeof e === 'string') {
+			const filteredByRegion = allCountries.filter(
+				(country) => country.region.toLowerCase() === e.toLowerCase()
+			);
+			setFiltered(filteredByRegion);
+		} else {
+			const target = e.target as Element;
+			const filteredByRegion = allCountries.filter(
+				(country) =>
+					country.region.toLowerCase() === target.innerHTML.toLowerCase()
+			);
+			setFiltered(filteredByRegion);
+		}
 		setOpen(!open);
 	};
+
 	return (
 		<div className='relative w-filter flex justify-center items-center px-1.5 bg-white shadow-tool rounded-regular py-2 mt-3 md:mt-0'>
 			<button
 				className='font-sans text-s flex justify-between items-center w-full px-2'
-				onClick={() => {
-					setOpen(!open);
-					console.log('menu on/off');
-				}}>
+				onClick={() => setOpen(!open)}>
 				<p>Filter by Region</p>
 				<FontAwesomeIcon
 					icon={faChevronDown}
@@ -30,28 +46,45 @@ const Filter: FC = () => {
 				<li>
 					<button
 						className='w-full text-left px-5 py-0.5 text-s'
-						id='#africa'
 						onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-							handleFilter(e)
+							filterByRegion(e)
 						}>
 						Africa
 					</button>
 				</li>
 				<li>
-					<button className='w-full text-left px-5 py-0.5 text-s'>
+					<button
+						className='w-full text-left px-5 py-0.5 text-s'
+						onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+							filterByRegion('Americas')
+						}>
 						America
 					</button>
 				</li>
 				<li>
-					<button className='w-full text-left px-5 py-0.5 text-s'>Asia</button>
+					<button
+						className='w-full text-left px-5 py-0.5 text-s'
+						onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+							filterByRegion(e)
+						}>
+						Asia
+					</button>
 				</li>
 				<li>
-					<button className='w-full text-left px-5 py-0.5 text-s'>
+					<button
+						className='w-full text-left px-5 py-0.5 text-s'
+						onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+							filterByRegion(e)
+						}>
 						Europe
 					</button>
 				</li>
 				<li>
-					<button className='w-full text-left px-5 py-0.5 text-s'>
+					<button
+						className='w-full text-left px-5 py-0.5 text-s'
+						onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+							filterByRegion(e)
+						}>
 						Oceania
 					</button>
 				</li>
