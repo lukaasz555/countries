@@ -1,6 +1,4 @@
-import React, { FC, useState } from 'react';
-import DetailsTemplate from '../Details/DetailsTemplate';
-import DetailsContent from '../Details/DetailsContent';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 export interface CountryProps {
@@ -22,8 +20,6 @@ const CountryCard: FC<CountryProps> = ({
 	flags,
 	capital,
 }) => {
-	const [country, setCountry] = useState<CountryProps | {}>({});
-
 	return (
 		<div>
 			{capital instanceof Array ? (
@@ -42,18 +38,18 @@ const CountryCard: FC<CountryProps> = ({
 							{name.common}
 						</Link>
 						<div className='flex'>
-							<DetailsTemplate body='Population' />
-							<DetailsContent body={population} />
+							<p className='font-semibold text-s'>Population: </p>
+							<p className='text-s ml-1'>{population}</p>
 						</div>
 
 						<div className='flex my-0.5'>
-							<DetailsTemplate body='Region' />
-							<DetailsContent body={region} />
+							<p className='font-semibold text-s'>Region: </p>
+							<p className='text-s ml-1'>{region}</p>
 						</div>
 
 						<div className='flex'>
-							<DetailsTemplate body='Capital' />
-							<DetailsContent body={capital.join(', ')} />
+							<p className='font-semibold text-s'>Capital: </p>
+							<p className='text-s ml-1'>{capital.join(', ')}</p>
 						</div>
 					</section>
 				</div>

@@ -45,18 +45,24 @@ const CountryPage: FC = () => {
 		}
 	};
 
-	console.log(getLanguages());
+	const getBorderCountries = () => console.log('asdf');
+	console.log(getBorderCountries());
 
 	return (
 		<div>
 			{typeof country == 'undefined' ? null : (
-				<main className='flex flex-col'>
-					<div>
-						<img src={country[0].flags.png} alt='' />
+				<main className='flex flex-col mt-5 items-center min-w-card border-2 border-red border-solid px-8'>
+					<div className='my-5 w-full flex justify-center'>
+						<img
+							src={country[0].flags.png}
+							alt={`Flag of ${country[0].name.common}`}
+						/>
 					</div>
-					<div>
-						<div>
-							<h2>{country[0].name.common}</h2>
+					<div className='flex flex-col'>
+						<div className='mb-5'>
+							<h2 className='font-semibold mb-2 text-xl md:text-2xl'>
+								{country[0].name.common}
+							</h2>
 							<div className='flex'>
 								<DetailsTemplate body='Native Name' />
 								<DetailsContent body={getNativeName()} />
@@ -79,7 +85,7 @@ const CountryPage: FC = () => {
 							</div>
 						</div>
 
-						<div>
+						<div className='mb-5'>
 							<div className='flex'>
 								<DetailsTemplate body='Top Level Domain' />
 								<DetailsContent body={country[0].tld} />
@@ -92,6 +98,12 @@ const CountryPage: FC = () => {
 								<DetailsTemplate body='Languages' />
 								<DetailsContent body={getLanguages().join(', ')} />
 							</div>
+						</div>
+
+						<div className='flex mb-5'>
+							<h3 className='font-semibold text-m md:text-l'>
+								Border Countries:
+							</h3>
 						</div>
 					</div>
 				</main>

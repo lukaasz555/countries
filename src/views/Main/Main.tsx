@@ -1,13 +1,15 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, useContext } from 'react';
 import Filter from '../../components/Filter/Filter';
 import Input from '../../components/Input/Input';
 import CountryCard from '../../components/CountryCard/CountryCard';
 import { CountryProps } from '../../components/CountryCard/CountryCard';
 import axios from 'axios';
+import { TestCtx } from '../../context/CountriesContext';
 
 const Main: FC = () => {
-	const [allCountries, setAllCountries] = useState<CountryProps[] | []>([]);
+	/* 	const [allCountries, setAllCountries] = useState<CountryProps[] | []>([]); */
 	const [filtered, setFiltered] = useState<CountryProps[] | []>([]);
+	const { allCountries, setAllCountries } = useContext(TestCtx);
 
 	useEffect(() => {
 		axios
@@ -20,7 +22,7 @@ const Main: FC = () => {
 	}, []);
 
 	return (
-		<div className='App bg-lightBG min-h-screen w-full flex flex-col items-start'>
+		<div className='bg-lightBG min-h-screen w-full flex flex-col items-start'>
 			<div className='flex flex-col justify-between md:flex-row w-full min-w-mobile max-w-desktop my-2 mx-auto py-2 px-5 2xl:px-0'>
 				<Input
 					allCountries={allCountries}
