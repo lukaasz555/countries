@@ -1,14 +1,12 @@
-import React, { FC, useEffect, useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import Filter from '../../components/Filter/Filter';
 import Input from '../../components/Input/Input';
 import CountryCard from '../../components/CountryCard/CountryCard';
 import { CountryProps } from '../../components/CountryCard/CountryCard';
-import axios from 'axios';
 import { CountriesCtx } from '../../context/CountriesContext';
 
 const Main: FC = () => {
-	const { allCountries, filtered, setAllCountries, setFiltered } =
-		useContext(CountriesCtx);
+	const { allCountries, filtered, setFiltered } = useContext(CountriesCtx);
 
 	return (
 		<div className='bg-lightBG min-h-screen w-full flex flex-col items-start'>

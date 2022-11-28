@@ -5,13 +5,12 @@ import DetailsContent from '../../components/Details/DetailsContent';
 import { CountriesCtx } from '../../context/CountriesContext';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { CountryProps } from '../../components/CountryCard/CountryCard';
 
 const CountryPage: FC = () => {
 	const [country, setCountry] = useState<any>();
 	const location = useLocation();
-	const { allCountries, setAllCountries, setFiltered } =
-		useContext(CountriesCtx);
-	console.log('CPAGE: ', allCountries);
+	const { allCountries } = useContext(CountriesCtx);
 
 	useEffect(() => {
 		axios
@@ -51,23 +50,27 @@ const CountryPage: FC = () => {
 	};
 
 	const checkCountries = (data: string) => {
-		const newArr = allCountries.filter(
+		const filtered = allCountries.filter(
 			(c) => c.cca3.toUpperCase() === data.toUpperCase()
 		);
-		return newArr;
+		return filtered;
 	};
 
-	const getData = () => {
+	const getBorderCountries = () => {
 		if (typeof country !== 'undefined') {
 			const borders = country[0].borders;
 			const borderCountries = borders.map((item: string) =>
 				checkCountries(item)
 			);
-			return borderCountries;
+			return borderCountries.flat().map((item: CountryProps) => (
+				<Link
+					to={`/${item.name.common}`}
+					className='px-3 py-1.5 shadow-rounded mr-3 mb-2 text-s md:text-m hover:scale-110 ease-linear duration-75'>
+					{item.name.common}
+				</Link>
+			));
 		}
 	};
-
-	console.log(getData());
 
 	return (
 		<div>
@@ -121,10 +124,11 @@ const CountryPage: FC = () => {
 							</div>
 						</div>
 
-						<div className='flex mb-5'>
-							<h3 className='font-semibold text-m md:text-l'>
+						<div className='flex flex-col mb-25'>
+							<h3 className='font-semibold text-m md:text-l mb-3'>
 								Border Countries:
 							</h3>
+							<div className='flex flex-wrap'>{getBorderCountries()}</div>
 						</div>
 					</div>
 				</main>
