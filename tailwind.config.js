@@ -53,6 +53,7 @@ module.exports = {
 				bottom: '0 4px 20px -14px rgba(0, 0, 0, 0.3)',
 				tool: '8px 2px 20px rgba(0, 0, 0, 0.1)',
 				card: '4px 8px 20px rgba(0, 0, 0, 0.1)',
+				rounded: '0 0 20px rgba(0, 0, 0, 0.2)',
 			},
 		},
 	},

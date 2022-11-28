@@ -1,7 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
-import axios from 'axios';
-import DetailsTemplate from '../Details/DetailsTemplate';
-import DetailsContent from '../Details/DetailsContent';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 export interface CountryProps {
@@ -14,6 +11,7 @@ export interface CountryProps {
 		png: string;
 	};
 	capital: string[];
+	cca3: string;
 }
 
 const CountryCard: FC<CountryProps> = ({
@@ -22,23 +20,12 @@ const CountryCard: FC<CountryProps> = ({
 	region,
 	flags,
 	capital,
+	cca3,
 }) => {
-	const [country, setCountry] = useState<CountryProps | {}>({});
-	/* 	const [country, setCountry] = useState<any[]>([]);
-	useEffect(() => {
-		const data = axios
-			.get('https://restcountries.com/v3.1/name/brasil')
-			.then((res) => {
-				setCountry(res.data);
-				console.log(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, []); */
-
 	return (
 		<div>
-			{country ? (
-				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-between m-5 w-card'>
+			{capital instanceof Array ? (
+				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-start m-5 w-card h-card'>
 					<section>
 						<img
 							src={flags.png}
@@ -53,18 +40,18 @@ const CountryCard: FC<CountryProps> = ({
 							{name.common}
 						</Link>
 						<div className='flex'>
-							<DetailsTemplate body='Population' />
-							<DetailsContent body={population} />
+							<p className='font-semibold text-s'>Population: </p>
+							<p className='text-s ml-1'>{population.toLocaleString('en')}</p>
 						</div>
 
 						<div className='flex my-0.5'>
-							<DetailsTemplate body='Region' />
-							<DetailsContent body={region} />
+							<p className='font-semibold text-s'>Region: </p>
+							<p className='text-s ml-1'>{region}</p>
 						</div>
 
 						<div className='flex'>
-							<DetailsTemplate body='Capital' />
-							<DetailsContent body={capital} />
+							<p className='font-semibold text-s'>Capital: </p>
+							<p className='text-s ml-1'>{capital.join(', ')}</p>
 						</div>
 					</section>
 				</div>
