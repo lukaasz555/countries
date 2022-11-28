@@ -10,13 +10,14 @@ import { CountryProps } from '../../components/CountryCard/CountryCard';
 const CountryPage: FC = () => {
 	const [country, setCountry] = useState<any>();
 	const location = useLocation();
-	const { allCountries } = useContext(CountriesCtx);
+	const { allCountries, setFiltered } = useContext(CountriesCtx);
 
 	useEffect(() => {
 		axios
 			.get(`https://restcountries.com/v3.1/name${location.pathname}`)
 			.then((res) => {
 				setCountry(Array.from(res.data));
+				setFiltered(allCountries);
 			})
 			.catch((err) => console.log(err));
 	}, [location]);
@@ -57,9 +58,8 @@ const CountryPage: FC = () => {
 	};
 
 	const getBorderCountries = () => {
-		if (typeof country !== 'undefined') {
-			const borders = country[0].borders;
-			const borderCountries = borders.map((item: string) =>
+		if (typeof country[0].borders !== 'undefined') {
+			const borderCountries = country[0].borders.map((item: string) =>
 				checkCountries(item)
 			);
 			return borderCountries.flat().map((item: CountryProps) => (
@@ -74,7 +74,9 @@ const CountryPage: FC = () => {
 
 	return (
 		<div>
-			{typeof country == 'undefined' ? null : (
+			{typeof country == 'undefined' ? (
+				'Loading'
+			) : (
 				<main className='flex flex-col mt-5 items-start min-w-card px-8'>
 					<div className='my-5 w-full flex justify-center'>
 						<img
@@ -93,7 +95,9 @@ const CountryPage: FC = () => {
 							</div>
 							<div className='flex'>
 								<DetailsTemplate body='Population' />
-								<DetailsContent body={country[0].population} />
+								<DetailsContent
+									body={country[0].population.toLocaleString('en')}
+								/>
 							</div>
 							<div className='flex'>
 								<DetailsTemplate body='Region' />

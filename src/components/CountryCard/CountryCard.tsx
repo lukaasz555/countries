@@ -25,7 +25,7 @@ const CountryCard: FC<CountryProps> = ({
 	return (
 		<div>
 			{capital instanceof Array ? (
-				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-between m-5 w-card'>
+				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-start m-5 w-card h-card'>
 					<section>
 						<img
 							src={flags.png}
@@ -41,7 +41,7 @@ const CountryCard: FC<CountryProps> = ({
 						</Link>
 						<div className='flex'>
 							<p className='font-semibold text-s'>Population: </p>
-							<p className='text-s ml-1'>{population}</p>
+							<p className='text-s ml-1'>{population.toLocaleString('en')}</p>
 						</div>
 
 						<div className='flex my-0.5'>
