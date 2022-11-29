@@ -82,7 +82,9 @@ const CountryPage: FC = () => {
 	return (
 		<div className='w-full min-w-mobile max-w-desktop'>
 			{typeof country == 'undefined' ? (
-				<Loader />
+				<div className='w-full flex justify-center mt-10'>
+					<Loader />
+				</div>
 			) : (
 				<div className='flex flex-col px-8 lg:px-5'>
 					<div className='my-10 flex justify-start w-full'>
