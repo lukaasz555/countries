@@ -16,24 +16,27 @@ const CountryPage: FC = () => {
 		axios
 			.get(`https://restcountries.com/v3.1/name${location.pathname}`)
 			.then((res) => {
-				setCountry(Array.from(res.data));
+				const arr = Array.from(res.data);
+				const currentCountry = arr[0];
+				setCountry(currentCountry);
 				setFiltered(allCountries);
 			})
 			.catch((err) => console.log(err));
 	}, [location]);
 
-	const getNativeName = () => {
+	const getNativeName = (): string => {
 		if (typeof country !== 'undefined') {
-			const keys = Object.keys(country[0].name.nativeName);
+			const keys = Object.keys(country.name.nativeName);
 			const lastKey = keys[keys.length - 1];
-			const nativeName = country[0].name.nativeName[lastKey].common;
+			const nativeName = country.name.nativeName[lastKey].common;
 			return nativeName;
 		}
+		return '';
 	};
 
 	const getCurrencies = (): string[] => {
 		if (typeof country !== 'undefined') {
-			const values = Object.values(country[0].currencies);
+			const values = Object.values(country.currencies);
 			const currenciesNames = values.map((item: any) => item.name);
 			return currenciesNames;
 		} else {
@@ -43,14 +46,14 @@ const CountryPage: FC = () => {
 
 	const getLanguages = (): string[] => {
 		if (typeof country !== 'undefined') {
-			const langs: string[] = Object.values(country[0].languages);
+			const langs: string[] = Object.values(country.languages);
 			return langs;
 		} else {
 			return [];
 		}
 	};
 
-	const checkCountries = (data: string) => {
+	const checkCountries = (data: string): CountryProps[] => {
 		const filtered = allCountries.filter(
 			(c) => c.cca3.toUpperCase() === data.toUpperCase()
 		);
@@ -58,12 +61,13 @@ const CountryPage: FC = () => {
 	};
 
 	const getBorderCountries = () => {
-		if (typeof country[0].borders !== 'undefined') {
-			const borderCountries = country[0].borders.map((item: string) =>
+		if (typeof country.borders !== 'undefined') {
+			const borderCountries = country.borders.map((item: string) =>
 				checkCountries(item)
 			);
 			return borderCountries.flat().map((item: CountryProps) => (
 				<Link
+					key={item.name.common}
 					to={`/${item.name.common}`}
 					className='px-3 py-1.5 shadow-rounded mr-3 mb-2 text-s md:text-m hover:scale-110 ease-linear duration-75'>
 					{item.name.common}
@@ -80,14 +84,14 @@ const CountryPage: FC = () => {
 				<main className='flex flex-col mt-5 items-start min-w-card px-8'>
 					<div className='my-5 w-full flex justify-center'>
 						<img
-							src={country[0].flags.png}
-							alt={`Flag of ${country[0].name.common}`}
+							src={country.flags.png}
+							alt={`Flag of ${country.name.common}`}
 						/>
 					</div>
 					<div className='flex flex-col'>
 						<div className='mb-5'>
 							<h2 className='font-semibold mb-2 text-xl md:text-2xl'>
-								{country[0].name.common}
+								{country.name.common}
 							</h2>
 							<div className='flex'>
 								<DetailsTemplate body='Native Name' />
@@ -96,27 +100,27 @@ const CountryPage: FC = () => {
 							<div className='flex'>
 								<DetailsTemplate body='Population' />
 								<DetailsContent
-									body={country[0].population.toLocaleString('en')}
+									body={country.population.toLocaleString('en')}
 								/>
 							</div>
 							<div className='flex'>
 								<DetailsTemplate body='Region' />
-								<DetailsContent body={country[0].region} />
+								<DetailsContent body={country.region} />
 							</div>
 							<div className='flex'>
 								<DetailsTemplate body='Sub Region' />
-								<DetailsContent body={country[0].subregion} />
+								<DetailsContent body={country.subregion} />
 							</div>
 							<div className='flex'>
 								<DetailsTemplate body='Capital' />
-								<DetailsContent body={country[0].capital.join(', ')} />
+								<DetailsContent body={country.capital.join(', ')} />
 							</div>
 						</div>
 
 						<div className='mb-5'>
 							<div className='flex'>
 								<DetailsTemplate body='Top Level Domain' />
-								<DetailsContent body={country[0].tld} />
+								<DetailsContent body={country.tld} />
 							</div>
 							<div className='flex'>
 								<DetailsTemplate body='Currencies' />
