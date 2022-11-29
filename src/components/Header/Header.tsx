@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Header: FC = () => {
 	return (
 		<header className='bg-white w-full shadow-bottom'>
-			<div className='flex justify-between items-center w-1/1 min-w-mobile max-w-desktop my-2 mx-auto py-2 px-5 2xl:px-0'>
+			<div className='flex justify-between items-center w-1/1 min-w-mobile max-w-desktop my-2 mx-auto py-2 px-8 lg:px-5'>
 				<h1>
 					<Link to='/' className='font-extrabold text-xl py-1.5'>
 						Where in the world?
@@ -15,7 +15,8 @@ const Header: FC = () => {
 
 				<button
 					className='flex justify-around items-center'
-					onClick={() => console.log('mode switched')}>
+					/* onClick={() => console.log('mode switched')} */
+				>
 					<FontAwesomeIcon icon={faMoon} className='mr-2' />
 					<p className='font-semibold text-base py-1.5'>Dark Mode</p>
 				</button>

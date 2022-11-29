@@ -25,7 +25,7 @@ const CountryCard: FC<CountryProps> = ({
 	return (
 		<div>
 			{capital instanceof Array ? (
-				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-start m-5 w-card h-card'>
+				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-start m-8 w-card h-card'>
 					<section>
 						<img
 							src={flags.png}
