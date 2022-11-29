@@ -10,8 +10,8 @@ const Main: FC = () => {
 	const { allCountries, filtered, setFiltered } = useContext(CountriesCtx);
 
 	return (
-		<div className='bg-lightBG min-h-screen w-full flex flex-col items-start px-8'>
-			<div className='flex flex-col justify-between md:flex-row w-full min-w-mobile max-w-desktop my-2 mx-auto py-2 px-8 lg:px-5'>
+		<div className='bg-lightBG min-h-screen w-full flex flex-col items-start lg:px-8'>
+			<div className='flex flex-col justify-between md:flex-row w-full min-w-mobile max-w-desktop my-2 mx-auto py-2 px-5 lg:px-5'>
 				<Input
 					allCountries={allCountries}
 					filtered={filtered}

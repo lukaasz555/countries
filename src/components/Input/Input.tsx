@@ -24,7 +24,7 @@ const Input: FC<InputProps> = ({ allCountries, filtered, setFiltered }) => {
 	};
 
 	return (
-		<div className='bg-white py-2.5 pl-3 shadow-tool w-input rounded-regular'>
+		<div className='bg-white py-2.5 pl-3 shadow-tool min-w-input px-5 rounded-regular'>
 			<FontAwesomeIcon icon={faMagnifyingGlass} className='mx-5' />
 			<input
 				type='text'

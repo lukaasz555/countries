@@ -46,7 +46,7 @@ const Filter: FC<FilterProps> = ({ allCountries, setFiltered }) => {
 				} origin-top transition-all`}>
 				<li>
 					<button
-						className='w-full text-left px-5 py-0.5 text-s'
+						className='w-full text-left px-5 py-0.5 text-s my-1'
 						onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
 							filterByRegion(e)
 						}>
@@ -55,7 +55,7 @@ const Filter: FC<FilterProps> = ({ allCountries, setFiltered }) => {
 				</li>
 				<li>
 					<button
-						className='w-full text-left px-5 py-0.5 text-s'
+						className='w-full text-left px-5 py-0.5 text-s my-1'
 						onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
 							filterByRegion('Americas')
 						}>
@@ -64,7 +64,7 @@ const Filter: FC<FilterProps> = ({ allCountries, setFiltered }) => {
 				</li>
 				<li>
 					<button
-						className='w-full text-left px-5 py-0.5 text-s'
+						className='w-full text-left px-5 py-0.5 text-s my-1'
 						onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
 							filterByRegion(e)
 						}>
@@ -73,7 +73,7 @@ const Filter: FC<FilterProps> = ({ allCountries, setFiltered }) => {
 				</li>
 				<li>
 					<button
-						className='w-full text-left px-5 py-0.5 text-s'
+						className='w-full text-left px-5 py-0.5 text-s my-1'
 						onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
 							filterByRegion(e)
 						}>
@@ -82,7 +82,7 @@ const Filter: FC<FilterProps> = ({ allCountries, setFiltered }) => {
 				</li>
 				<li>
 					<button
-						className='w-full text-left px-5 py-0.5 text-s'
+						className='w-full text-left px-5 py-0.5 text-s my-1'
 						onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
 							filterByRegion(e)
 						}>
