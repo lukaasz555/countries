@@ -14,7 +14,6 @@ Users should be able to:
 - Toggle the color scheme between light and dark mode _(optional)_
 
 You can check [live demo here.](https://snazzy-elf-9eea4e.netlify.app/)
-Stack: React, TS, TailwindCSS
 
 ### Built with
 
