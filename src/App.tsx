@@ -12,7 +12,7 @@ function App() {
 				<div className='bg-lightBG min-h-screen w-1/1 flex flex-col items-center'>
 					<Header />
 					<Routes>
-						<Route path='/countries/' element={<Main />} />
+						<Route path='/' element={<Main />} />
 						<Route path='/countries/:name' element={<CountryPage />} />
 					</Routes>
 				</div>

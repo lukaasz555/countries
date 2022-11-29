@@ -110,7 +110,7 @@ const CountryPage: FC = () => {
 				<div className='flex flex-col px-8 lg:px-5'>
 					<div className='my-10 flex justify-start w-full'>
 						<Link
-							to='/countries/'
+							to='/'
 							className='group shadow-rounded text-center px-10 py-1.5 text-s lg:text-m'>
 							<FontAwesomeIcon
 								icon={faArrowLeft}
