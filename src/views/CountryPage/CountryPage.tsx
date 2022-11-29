@@ -17,7 +17,12 @@ const CountryPage: FC = () => {
 
 	useEffect(() => {
 		axios
-			.get(`https://restcountries.com/v3.1/name${location.pathname}`)
+			.get(
+				`https://restcountries.com/v3.1/name/${location.pathname.replace(
+					'/countries/',
+					''
+				)}`
+			)
 			.then((res) => {
 				const arr = Array.from(res.data);
 				const currentCountry = arr[0];
@@ -63,9 +68,10 @@ const CountryPage: FC = () => {
 		return filtered;
 	};
 
-	const getBorderCountries = () => {
+	const getBorderCountries = (): JSX.Element | boolean => {
 		if (typeof country.borders !== 'undefined') {
-			const borderCountries = country.borders.map((item: string) =>
+			const { borders } = country;
+			const borderCountries = borders.map((item: string) =>
 				checkCountries(item)
 			);
 			if (borderCountries.length > 0) {
@@ -78,7 +84,7 @@ const CountryPage: FC = () => {
 							{borderCountries.flat().map((item: CountryProps) => (
 								<Link
 									key={item.name.common}
-									to={`/${item.name.common}`}
+									to={`/countries/${item.name.common.toLowerCase()}`}
 									className='px-3 py-1.5 shadow-rounded mr-3 mb-2 text-s md:text-m hover:scale-110 ease-linear duration-75'>
 									{item.name.common}
 								</Link>
@@ -87,8 +93,10 @@ const CountryPage: FC = () => {
 					</>
 				);
 			} else {
-				return null;
+				return false;
 			}
+		} else {
+			return false;
 		}
 	};
 
@@ -102,7 +110,7 @@ const CountryPage: FC = () => {
 				<div className='flex flex-col px-8 lg:px-5'>
 					<div className='my-10 flex justify-start w-full'>
 						<Link
-							to='/'
+							to='/countries/'
 							className='group shadow-rounded text-center px-10 py-1.5 text-s lg:text-m'>
 							<FontAwesomeIcon
 								icon={faArrowLeft}

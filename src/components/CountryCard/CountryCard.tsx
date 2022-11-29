@@ -27,7 +27,7 @@ const CountryCard: FC<CountryProps> = ({
 			{capital instanceof Array ? (
 				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-start m-8 w-card h-card hover:-translate-y-2 duration-300'>
 					<section>
-						<Link to={`/${name.common}`}>
+						<Link to={`/countries/${name.common.toLowerCase()}`}>
 							<img
 								src={flags.png}
 								alt={`Flag of ${name.common}`}
@@ -37,7 +37,7 @@ const CountryCard: FC<CountryProps> = ({
 					</section>
 					<section className='pb-5 pt-3 px-5 flex flex-col justify-center items-start'>
 						<Link
-							to={`/${name.common.toLowerCase()}`}
+							to={`/countries/${name.common.toLowerCase()}`}
 							className='font-semibold mb-3 mt-2 text-l'>
 							{name.common}
 						</Link>
