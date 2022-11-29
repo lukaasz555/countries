@@ -6,6 +6,9 @@ import { CountriesCtx } from '../../context/CountriesContext';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { CountryProps } from '../../components/CountryCard/CountryCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import Loader from '../../components/Loader/Loader';
 
 const CountryPage: FC = () => {
 	const [country, setCountry] = useState<any>();
@@ -77,69 +80,86 @@ const CountryPage: FC = () => {
 	};
 
 	return (
-		<div>
+		<div className='w-full min-w-mobile max-w-desktop'>
 			{typeof country == 'undefined' ? (
-				'Loading'
+				<Loader />
 			) : (
-				<main className='flex flex-col mt-5 items-start min-w-card px-8'>
-					<div className='my-5 w-full flex justify-center'>
-						<img
-							src={country.flags.png}
-							alt={`Flag of ${country.name.common}`}
-						/>
+				<div className='flex flex-col px-8 lg:px-5'>
+					<div className='my-10 flex justify-start w-full'>
+						<Link
+							to='/'
+							className='group shadow-rounded text-center px-10 py-1.5 text-s lg:text-m'>
+							<FontAwesomeIcon
+								icon={faArrowLeft}
+								className='mr-2 group-hover:-translate-x-1.5 duration-100'
+							/>
+							Back
+						</Link>
 					</div>
-					<div className='flex flex-col'>
-						<div className='mb-5'>
-							<h2 className='font-semibold mb-2 text-xl md:text-2xl'>
-								{country.name.common}
-							</h2>
-							<div className='flex'>
-								<DetailsTemplate body='Native Name' />
-								<DetailsContent body={getNativeName()} />
-							</div>
-							<div className='flex'>
-								<DetailsTemplate body='Population' />
-								<DetailsContent
-									body={country.population.toLocaleString('en')}
-								/>
-							</div>
-							<div className='flex'>
-								<DetailsTemplate body='Region' />
-								<DetailsContent body={country.region} />
-							</div>
-							<div className='flex'>
-								<DetailsTemplate body='Sub Region' />
-								<DetailsContent body={country.subregion} />
-							</div>
-							<div className='flex'>
-								<DetailsTemplate body='Capital' />
-								<DetailsContent body={country.capital.join(', ')} />
-							</div>
+					<main className='flex flex-col mt-5 items-start min-w-card lg:flex-row lg:items-start '>
+						<div className='my-5 w-full flex justify-center lg:my-0 lg:justify-start lg:mr-5'>
+							<img
+								src={country.flags.svg}
+								alt={`Flag of ${country.name.common}`}
+							/>
 						</div>
+						<div className='flex flex-col lg:basis-5/6 lg:mt-5 lg:ml-10'>
+							<div>
+								<h2 className='font-semibold mb-2 text-xl md:text-2xl lg:mb-5'>
+									{country.name.common}
+								</h2>
+							</div>
+							<div className='flex w-full mt-5 mb-10'>
+								<div>
+									<div className='flex'>
+										<DetailsTemplate body='Native Name' />
+										<DetailsContent body={getNativeName()} />
+									</div>
+									<div className='flex'>
+										<DetailsTemplate body='Population' />
+										<DetailsContent
+											body={country.population.toLocaleString('en')}
+										/>
+									</div>
+									<div className='flex'>
+										<DetailsTemplate body='Region' />
+										<DetailsContent body={country.region} />
+									</div>
+									<div className='flex'>
+										<DetailsTemplate body='Sub Region' />
+										<DetailsContent body={country.subregion} />
+									</div>
+									<div className='flex'>
+										<DetailsTemplate body='Capital' />
+										<DetailsContent body={country.capital.join(', ')} />
+									</div>
+								</div>
 
-						<div className='mb-5'>
-							<div className='flex'>
-								<DetailsTemplate body='Top Level Domain' />
-								<DetailsContent body={country.tld} />
+								<div className='lg:ml-16'>
+									<div className='flex'>
+										<DetailsTemplate body='Top Level Domain' />
+										<DetailsContent body={country.tld} />
+									</div>
+									<div className='flex'>
+										<DetailsTemplate body='Currencies' />
+										<DetailsContent body={getCurrencies().join(', ')} />
+									</div>
+									<div className='flex'>
+										<DetailsTemplate body='Languages' />
+										<DetailsContent body={getLanguages().join(', ')} />
+									</div>
+								</div>
 							</div>
-							<div className='flex'>
-								<DetailsTemplate body='Currencies' />
-								<DetailsContent body={getCurrencies().join(', ')} />
-							</div>
-							<div className='flex'>
-								<DetailsTemplate body='Languages' />
-								<DetailsContent body={getLanguages().join(', ')} />
-							</div>
-						</div>
 
-						<div className='flex flex-col mb-25'>
-							<h3 className='font-semibold text-m md:text-l mb-3'>
-								Border Countries:
-							</h3>
-							<div className='flex flex-wrap'>{getBorderCountries()}</div>
+							<div className='flex flex-col mb-25 w-full'>
+								<h3 className='font-semibold text-m md:text-l mb-3'>
+									Border Countries:
+								</h3>
+								<div className='flex flex-wrap'>{getBorderCountries()}</div>
+							</div>
 						</div>
-					</div>
-				</main>
+					</main>
+				</div>
 			)}
 		</div>
 	);
