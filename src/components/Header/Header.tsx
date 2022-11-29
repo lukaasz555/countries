@@ -14,7 +14,7 @@ const Header: FC = () => {
 				</h1>
 
 				<button
-					className='flex justify-around items-center'
+					className='flex justify-around items-center hidden'
 					/* onClick={() => console.log('mode switched')} */
 				>
 					<FontAwesomeIcon icon={faMoon} className='mr-2' />

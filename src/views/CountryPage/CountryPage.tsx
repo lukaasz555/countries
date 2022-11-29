@@ -68,14 +68,27 @@ const CountryPage: FC = () => {
 			const borderCountries = country.borders.map((item: string) =>
 				checkCountries(item)
 			);
-			return borderCountries.flat().map((item: CountryProps) => (
-				<Link
-					key={item.name.common}
-					to={`/${item.name.common}`}
-					className='px-3 py-1.5 shadow-rounded mr-3 mb-2 text-s md:text-m hover:scale-110 ease-linear duration-75'>
-					{item.name.common}
-				</Link>
-			));
+			if (borderCountries.length > 0) {
+				return (
+					<>
+						<h3 className='font-semibold text-m md:text-l mb-3'>
+							Border Countries:
+						</h3>
+						<div className='flex flex-wrap'>
+							{borderCountries.flat().map((item: CountryProps) => (
+								<Link
+									key={item.name.common}
+									to={`/${item.name.common}`}
+									className='px-3 py-1.5 shadow-rounded mr-3 mb-2 text-s md:text-m hover:scale-110 ease-linear duration-75'>
+									{item.name.common}
+								</Link>
+							))}
+						</div>
+					</>
+				);
+			} else {
+				return null;
+			}
 		}
 	};
 
@@ -111,7 +124,7 @@ const CountryPage: FC = () => {
 									{country.name.common}
 								</h2>
 							</div>
-							<div className='flex w-full mt-5 mb-10'>
+							<div className='flex flex-col lg:flex-row w-full mt-5 mb-10'>
 								<div>
 									<div className='flex'>
 										<DetailsTemplate body='Native Name' />
@@ -137,7 +150,7 @@ const CountryPage: FC = () => {
 									</div>
 								</div>
 
-								<div className='lg:ml-16'>
+								<div className='mt-6 lg:mt-0 lg:ml-16'>
 									<div className='flex'>
 										<DetailsTemplate body='Top Level Domain' />
 										<DetailsContent body={country.tld} />
@@ -154,10 +167,7 @@ const CountryPage: FC = () => {
 							</div>
 
 							<div className='flex flex-col mb-25 w-full'>
-								<h3 className='font-semibold text-m md:text-l mb-3'>
-									Border Countries:
-								</h3>
-								<div className='flex flex-wrap'>{getBorderCountries()}</div>
+								{getBorderCountries()}
 							</div>
 						</div>
 					</main>
