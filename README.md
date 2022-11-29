@@ -13,14 +13,14 @@ Users should be able to:
 - Click through to the border countries on the detail page
 - Toggle the color scheme between light and dark mode _(optional)_
 
-### Screenshot
-
-![Screen #1](./1.png)
-![Screen #2](./2.png)
-
 ### Built with
 
 - Mobile-first workflow
 - [React](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/docs/)
 - [TailwindCSS](https://tailwindcss.com/)
+
+### Screenshot
+
+![Screen #1](./1.png)
+![Screen #2](./2.png)
