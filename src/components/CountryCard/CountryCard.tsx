@@ -25,13 +25,15 @@ const CountryCard: FC<CountryProps> = ({
 	return (
 		<div>
 			{capital instanceof Array ? (
-				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-start m-8 w-card h-card'>
+				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-start m-8 w-card h-card hover:-translate-y-2 duration-300'>
 					<section>
-						<img
-							src={flags.png}
-							alt={`Flag of ${name.common}`}
-							className='w-full h-half'
-						/>
+						<Link to={`/${name.common}`}>
+							<img
+								src={flags.png}
+								alt={`Flag of ${name.common}`}
+								className='w-full h-half'
+							/>
+						</Link>
 					</section>
 					<section className='pb-5 pt-3 px-5 flex flex-col justify-center items-start'>
 						<Link

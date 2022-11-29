@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { CountryProps } from '../CountryCard/CountryCard';
@@ -6,27 +6,21 @@ import { CountryProps } from '../CountryCard/CountryCard';
 interface FilterProps {
 	allCountries: CountryProps[] | [];
 	setFiltered: React.Dispatch<React.SetStateAction<CountryProps[]>>;
+	open: boolean;
+	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	filterByRegion: (e: any) => void;
 }
 
-const Filter: FC<FilterProps> = ({ allCountries, setFiltered }) => {
-	const [open, setOpen] = useState<boolean>(false);
-	console.log('filter: ', allCountries);
-
-	const filterByRegion = (e: any) => {
-		if (typeof e === 'string') {
-			const filteredByRegion = allCountries.filter(
-				(country) => country.region.toLowerCase() === e.toLowerCase()
-			);
-			setFiltered(filteredByRegion);
-		} else {
-			const target = e.target as Element;
-			const filteredByRegion = allCountries.filter(
-				(country) =>
-					country.region.toLowerCase() === target.innerHTML.toLowerCase()
-			);
-			setFiltered(filteredByRegion);
-		}
-		setOpen(!open);
+const Filter: FC<FilterProps> = ({
+	allCountries,
+	setFiltered,
+	open,
+	setOpen,
+	filterByRegion,
+}) => {
+	const showAll = () => {
+		setFiltered(allCountries);
+		setOpen(false);
 	};
 
 	return (
@@ -43,7 +37,7 @@ const Filter: FC<FilterProps> = ({ allCountries, setFiltered }) => {
 			<ul
 				className={`absolute top-full mt-2 bg-white w-full py-2 rounded-regular ${
 					open ? 'scale-y-100' : 'scale-y-0'
-				} origin-top transition-all`}>
+				} origin-top transition-all z-10`}>
 				<li>
 					<button
 						className='w-full text-left px-5 py-0.5 text-s my-1'
@@ -87,6 +81,13 @@ const Filter: FC<FilterProps> = ({ allCountries, setFiltered }) => {
 							filterByRegion(e)
 						}>
 						Oceania
+					</button>
+				</li>
+				<li>
+					<button
+						className='w-full text-left px-5 py-0.5 text-s my-1'
+						onClick={showAll}>
+						All countries
 					</button>
 				</li>
 			</ul>
