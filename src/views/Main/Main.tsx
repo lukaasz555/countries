@@ -9,6 +9,7 @@ const Main: FC = () => {
 	const { allCountries, filtered, setFiltered } = useContext(CountriesCtx);
 	const [inputPhrase, setInputPhrase] = useState<string>('');
 	const [open, setOpen] = useState<boolean>(false);
+	const [errorMessage, setErrorMessage] = useState<string>('');
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value.toLowerCase();
@@ -22,6 +23,9 @@ const Main: FC = () => {
 			setFiltered(filteredItems);
 		} else {
 			setFiltered([]);
+			setErrorMessage(
+				"Ooops, we haven't found a country with provided name :("
+			);
 		}
 	};
 
@@ -77,7 +81,7 @@ const Main: FC = () => {
 				) : (
 					<div className='w-full flex justify-center mt-10'>
 						<h2 className='text-l lg:text-2xl mt-5 px-2 mx-5'>
-							Ooops, we haven't found a country with provided name :(
+							{errorMessage}
 						</h2>
 					</div>
 				)}
