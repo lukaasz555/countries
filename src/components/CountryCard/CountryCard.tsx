@@ -25,7 +25,7 @@ const CountryCard: FC<CountryProps> = ({
 	return (
 		<div>
 			{capital instanceof Array ? (
-				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-start m-8 w-card h-card hover:-translate-y-2 duration-300'>
+				<div className='bg-white rounded-regular shadow-card overflow-hidden flex flex-col justify-start mx-2 my-4 w-card h-card hover:-translate-y-2 duration-300'>
 					<section>
 						<Link to={`/countries/${name.common.toLowerCase()}`}>
 							<img

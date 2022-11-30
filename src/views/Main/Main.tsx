@@ -66,7 +66,7 @@ const Main: FC = () => {
 					filterByRegion={filterByRegion}
 				/>
 			</div>
-			<main className='flex flex-wrap justify-center w-full min-w-mobile max-w-desktop my-2 mx-auto'>
+			<main className='flex flex-wrap justify-center lg:justify-between w-full min-w-mobile max-w-desktop my-2 mx-auto'>
 				{filtered.length > 0 ? (
 					filtered.map((c: CountryProps) => (
 						<CountryCard
