@@ -4,7 +4,6 @@ import Input from '../../components/Input/Input';
 import CountryCard from '../../components/CountryCard/CountryCard';
 import { CountryProps } from '../../components/CountryCard/CountryCard';
 import { CountriesCtx } from '../../context/CountriesContext';
-import Loader from '../../components/Loader/Loader';
 
 const Main: FC = () => {
 	const { allCountries, filtered, setFiltered } = useContext(CountriesCtx);
@@ -14,14 +13,15 @@ const Main: FC = () => {
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value.toLowerCase();
 		setInputPhrase(value);
+		const filteredItems = allCountries.filter((country) =>
+			country.name.common.toLowerCase().includes(value)
+		);
 		if (value === '') {
 			setFiltered(allCountries);
+		} else if (filteredItems.length > 0) {
+			setFiltered(filteredItems);
 		} else {
-			setFiltered(
-				allCountries.filter((country) =>
-					country.name.common.toLowerCase().includes(value)
-				)
-			);
+			setFiltered([]);
 		}
 	};
 
@@ -76,7 +76,9 @@ const Main: FC = () => {
 					))
 				) : (
 					<div className='w-full flex justify-center mt-10'>
-						<Loader />
+						<h2 className='text-l lg:text-2xl mt-5 px-2 mx-5'>
+							Ooops, we haven't found a country with provided name :(
+						</h2>
 					</div>
 				)}
 			</main>

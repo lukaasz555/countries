@@ -9,9 +9,45 @@ import { CountryProps } from '../../components/CountryCard/CountryCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Loader from '../../components/Loader/Loader';
+import Country from '../../models/Country';
+
+const initCountry = {
+	name: {
+		common: '',
+		official: '',
+		nativeName: {
+			'': {
+				official: '',
+				common: '',
+			},
+		},
+	},
+
+	tld: '',
+	cca2: '',
+	cca3: '',
+	currencies: {
+		'': {
+			name: '',
+			symbol: '',
+		},
+	},
+	capital: [''],
+	region: '',
+	subregion: '',
+	languages: {
+		'': '',
+	},
+	borders: [''],
+	population: 0,
+	flags: {
+		png: '',
+		svg: '',
+	},
+};
 
 const CountryPage: FC = () => {
-	const [country, setCountry] = useState<any>();
+	const [country, setCountry] = useState<Country>(initCountry);
 	const location = useLocation();
 	const { allCountries, setFiltered } = useContext(CountriesCtx);
 
@@ -24,8 +60,8 @@ const CountryPage: FC = () => {
 				)}`
 			)
 			.then((res) => {
-				const arr = Array.from(res.data);
-				const currentCountry = arr[0];
+				const arr: Country[] = Array.from(res.data);
+				const currentCountry: Country = arr[0];
 				setCountry(currentCountry);
 				setFiltered(allCountries);
 			})
