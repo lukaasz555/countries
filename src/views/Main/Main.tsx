@@ -4,6 +4,7 @@ import Input from '../../components/Input/Input';
 import CountryCard from '../../components/CountryCard/CountryCard';
 import { CountryProps } from '../../components/CountryCard/CountryCard';
 import { CountriesCtx } from '../../context/CountriesContext';
+import Loader from '../../components/Loader/Loader';
 
 const Main: FC = () => {
 	const { allCountries, filtered, setFiltered } = useContext(CountriesCtx);
@@ -78,12 +79,14 @@ const Main: FC = () => {
 							cca3={c.cca3}
 						/>
 					))
-				) : (
+				) : errorMessage !== '' ? (
 					<div className='w-full flex justify-center mt-10'>
 						<h2 className='text-l lg:text-2xl mt-5 px-2 mx-5'>
 							{errorMessage}
 						</h2>
 					</div>
+				) : (
+					<Loader />
 				)}
 			</main>
 		</div>
